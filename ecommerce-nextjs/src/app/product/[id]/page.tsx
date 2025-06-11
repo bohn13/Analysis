@@ -11,8 +11,8 @@ interface ProductPageProps {
 }
 
 // TODO: Это Server Component - страница товара
-export default function ProductPage({ params }: ProductPageProps) {
-  const product = getProduct(params.id);
+export default async function ProductPage({ params }: ProductPageProps) {
+  const product = await getProduct(params.id);
 
   if (!product) {
     notFound();
