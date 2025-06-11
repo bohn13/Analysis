@@ -4,14 +4,8 @@ import Link from 'next/link';
 import { getProduct } from '@/lib/products';
 import { AddToCartButton } from './add-to-cart-button';
 
-interface ProductPageProps {
-  params: {
-    id: string;
-  };
-}
-
-// TODO: Это Server Component - страница товара
-export default async function ProductPage({ params }: ProductPageProps) {
+// Server Component - Product Page
+export default async function ProductPage({ params }: { params: { id: string } }) {
   const product = await getProduct(params.id);
 
   if (!product) {
@@ -28,7 +22,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Product Image */}
         <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
           <Image
             src={product.image}
@@ -40,20 +33,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
           />
         </div>
 
-        {/* Product Info */}
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            {product.name}
-          </h1>
-          
-          <p className="text-gray-600 mb-6">
-            {product.description}
-          </p>
-          
-          <div className="text-2xl font-bold text-gray-900 mb-6">
-            ${product.price}
-          </div>
-
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
+          <p className="text-gray-600 mb-6">{product.description}</p>
+          <div className="text-2xl font-bold text-gray-900 mb-6">${product.price}</div>
           <AddToCartButton product={product} />
         </div>
       </div>
