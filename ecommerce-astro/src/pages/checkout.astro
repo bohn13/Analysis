@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout title="Checkout - TechStore">
+  <Header />
+  <main>
+    <div class="max-w-4xl mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold mb-8">Checkout</h1>
+      
+      <!-- React Island для формы checkout -->
+      <div id="checkout-content"></div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import CheckoutPage from '../components/CheckoutPage';
+  import { createRoot } from 'react-dom/client';
+
+  const container = document.getElementById('checkout-content');
+  if (container) {
+    const root = createRoot(container);
+    root.render(CheckoutPage());
+  }
+</script>

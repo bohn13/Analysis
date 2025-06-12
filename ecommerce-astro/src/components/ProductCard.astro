@@ -1,0 +1,47 @@
+---
+import type { Product } from '../types';
+import { ShoppingCart } from 'lucide-react';
+import AddToCart from './AddToCart';
+
+export interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<div class="group relative">
+  <a href={`/product/${product.id}`}>
+    <div class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
+      <div class="aspect-square overflow-hidden bg-gray-100">
+        <img
+          src={product.image}
+          alt={product.name}
+          class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+      <div class="p-4">
+        <h3 class="text-base font-semibold text-gray-900 line-clamp-2 mb-2">
+          {product.name}
+        </h3>
+        <p class="text-sm text-gray-600 line-clamp-2 mb-3">
+          {product.description}
+        </p>
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-bold text-blue-600">
+            ${product.price}
+          </span>
+          <span class="text-xs uppercase tracking-wide text-gray-500 font-medium">
+            {product.category}
+          </span>
+        </div>
+      </div>
+    </div>
+  </a>
+  
+  <!-- Add to Cart Button -->
+  <div class="absolute bottom-4 right-4">
+    <AddToCart product={product} client:visible />
+  </div>
+</div>

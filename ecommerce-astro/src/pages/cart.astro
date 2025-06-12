@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CartContent from '../components/CartContent';
+---
+
+<Layout title="Shopping Cart - TechStore">
+  <Header />
+  <main>
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold mb-8">Shopping Cart</h1>
+      
+      <!-- Простий React Island -->
+      <CartContent client:load />
+    </div>
+  </main>
+</Layout>

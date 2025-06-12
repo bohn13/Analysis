@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import AddToCart from '../../components/AddToCart';
+import { products } from '../../lib/products';
+
+// Static generation - імпорт повинен бути доступний для getStaticPaths
+export function getStaticPaths() {
+  return [
+    { params: { id: '1' }, props: { product: { id: '1', name: 'Wireless Headphones', price: 99.99, image: 'https://picsum.photos/seed/headphones/400/400', description: 'High-quality wireless headphones with noise cancellation.', category: 'Electronics' } } },
+    { params: { id: '2' }, props: { product: { id: '2', name: 'Smart Watch', price: 199.99, image: 'https://picsum.photos/seed/smartwatch/400/400', description: 'Advanced smartwatch with health tracking features.', category: 'Electronics' } } },
+    { params: { id: '3' }, props: { product: { id: '3', name: 'Laptop Bag', price: 49.99, image: 'https://picsum.photos/seed/laptopbag/400/400', description: 'Durable laptop bag with multiple compartments.', category: 'Accessories' } } },
+    { params: { id: '4' }, props: { product: { id: '4', name: 'Coffee Mug', price: 15.99, image: 'https://picsum.photos/seed/coffeemug/400/400', description: 'Ceramic coffee mug with ergonomic design.', category: 'Home' } } },
+    { params: { id: '5' }, props: { product: { id: '5', name: 'Running Shoes', price: 89.99, image: 'https://picsum.photos/seed/runningshoes/400/400', description: 'Comfortable running shoes for daily workouts.', category: 'Sports' } } },
+    { params: { id: '6' }, props: { product: { id: '6', name: 'Desk Lamp', price: 29.99, image: 'https://picsum.photos/seed/desklamp/400/400', description: 'Modern LED desk lamp with adjustable brightness.', category: 'Home' } } }
+  ];
+}
+
+const { product } = Astro.props;
+
+if (!product) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Product not found'
+  });
+}
+---
+
+<Layout title={`${product.name} - TechStore`}>
+  <Header />
+  <main>
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <a 
+        href="/" 
+        class="text-blue-600 hover:text-blue-800 mb-6 inline-block"
+      >
+        ← Back to products
+      </a>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Product Image -->
+        <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+          <img
+            src={product.image}
+            alt={product.name}
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 mb-4">
+            {product.name}
+          </h1>
+          
+          <p class="text-gray-600 mb-6">
+            {product.description}
+          </p>
+          
+          <div class="text-2xl font-bold text-gray-900 mb-6">
+            ${product.price}
+          </div>
+
+          
+          <div class="w-full">
+            <AddToCart product={product} client:load />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+</style>
