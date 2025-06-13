@@ -6,7 +6,7 @@ export default defineConfig({
   integrations: [
     react(), 
     tailwind({
-      applyBaseStyles: false, // Отключаем автоматические базовые стили
+      // applyBaseStyles: false,
     })
   ],
   output: 'static',
