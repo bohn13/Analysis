@@ -1,4 +1,3 @@
-// React Island - интерактивная кнопка
 import type { Product } from '../types';
 import { useCartStore } from '../lib/cart-store';
 import { useEffect, useState } from 'react';
@@ -11,13 +10,12 @@ export default function AddToCart({ product }: AddToCartProps) {
   const [mounted, setMounted] = useState(false);
   const addItem = useCartStore((state) => state.addItem);
 
-  // Предотвращаем hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation
+    e.preventDefault();
     if (mounted) {
       addItem(product);
     }

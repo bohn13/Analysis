@@ -1,6 +1,5 @@
 import type { Product } from '../types';
 
-// TODO: Те же товары что и в Next.js версии для честного сравнения
 export const products: Product[] = [
   {
     id: '1',

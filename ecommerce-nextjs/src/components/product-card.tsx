@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { Product } from '@/types';
 import { useCartStore } from '@/lib/cart-store';
-import { ShoppingCart } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -50,10 +49,10 @@ export function ProductCard({ product }: ProductCardProps) {
       
       <button
         onClick={handleAddToCart}
-        className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg transition-all duration-200 hover:bg-blue-700 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors"
         aria-label={`Add ${product.name} to cart`}
       >
-        <ShoppingCart className="h-4 w-4" />
+        Add to Cart
       </button>
     </div>
   );
