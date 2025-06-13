@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ідентичні стилі як в Next.js */
 @layer utilities {
   .line-clamp-2 {
     display: -webkit-box;
