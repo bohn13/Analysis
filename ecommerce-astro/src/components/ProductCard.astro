@@ -1,6 +1,5 @@
 ---
 import type { Product } from '../types';
-import { ShoppingCart } from 'lucide-react';
 import AddToCart from './AddToCart';
 
 export interface Props {
@@ -10,9 +9,9 @@ export interface Props {
 const { product } = Astro.props;
 ---
 
-<div class="group relative">
-  <a href={`/product/${product.id}`}>
-    <div class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
+<div class="group relative h-full">
+  <a href={`/product/${product.id}`} class="block h-full">
+    <div class="relative flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
       <div class="aspect-square overflow-hidden bg-gray-100">
         <img
           src={product.image}
@@ -21,14 +20,15 @@ const { product } = Astro.props;
           loading="lazy"
         />
       </div>
-      <div class="p-4">
+
+      <div class="flex flex-col flex-1 p-4 pb-14">
         <h3 class="text-base font-semibold text-gray-900 line-clamp-2 mb-2">
           {product.name}
         </h3>
         <p class="text-sm text-gray-600 line-clamp-2 mb-3">
           {product.description}
         </p>
-        <div class="flex items-center justify-between">
+        <div class="mt-auto flex items-center justify-between">
           <span class="text-lg font-bold text-blue-600">
             ${product.price}
           </span>
@@ -37,10 +37,10 @@ const { product } = Astro.props;
           </span>
         </div>
       </div>
+
+      <div class="absolute bottom-3 right-3">
+        <AddToCart product={product} client:visible />
+      </div>
     </div>
   </a>
-  
-  <div class="absolute bottom-4 right-4">
-    <AddToCart product={product} client:visible />
-  </div>
 </div>

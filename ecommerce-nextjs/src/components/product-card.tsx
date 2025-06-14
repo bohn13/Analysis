@@ -17,10 +17,10 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="group relative">
-      <Link href={`/product/${product.id}`}>
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
-          <div className="aspect-square overflow-hidden bg-gray-100">
+    <div className="group relative h-full">
+      <Link href={`/product/${product.id}`} className="block h-full">
+        <div className="relative flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
+          <div className="aspect-square bg-gray-100 overflow-hidden">
             <img
               src={product.image}
               alt={product.name}
@@ -28,14 +28,15 @@ export function ProductCard({ product }: ProductCardProps) {
               loading="lazy"
             />
           </div>
-          <div className="p-4">
+
+          <div className="flex flex-col flex-1 p-4 pb-14"> {/* p-4 for spacing, pb-14 for button space */}
             <h3 className="text-base font-semibold text-gray-900 line-clamp-2 mb-2">
               {product.name}
             </h3>
             <p className="text-sm text-gray-600 line-clamp-2 mb-3">
               {product.description}
             </p>
-            <div className="flex items-center justify-between">
+            <div className="mt-auto flex items-center justify-between">
               <span className="text-lg font-bold text-blue-600">
                 ${product.price}
               </span>
@@ -44,16 +45,16 @@ export function ProductCard({ product }: ProductCardProps) {
               </span>
             </div>
           </div>
+
+          <button
+            onClick={handleAddToCart}
+            className="absolute bottom-3 right-3 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors"
+            aria-label={`Add ${product.name} to cart`}
+          >
+            Add to Cart
+          </button>
         </div>
       </Link>
-      
-      <button
-        onClick={handleAddToCart}
-        className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors"
-        aria-label={`Add ${product.name} to cart`}
-      >
-        Add to Cart
-      </button>
     </div>
   );
 }
