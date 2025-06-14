@@ -1,35 +1,24 @@
-
-
 {
   "compilerOptions": {
     "allowJs": true,
     "target": "ES2017",
     "module": "ES2022",
     "lib": ["es2022", "DOM", "WebWorker", "DOM.Iterable"],
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "declaration": false,
-    "declarationMap": false,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
-    "incremental": true,
-    "isolatedModules": true,
-    "outDir": "tmp",
-    "noEmit": true,
-    "types": ["node", "vite/client"],
+    "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "@builder.io/qwik"
+    "jsxImportSource": "@builder.io/qwik",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
-  "files": ["eslint.config.js"],
-  "include": ["src", "./*.d.ts", "./*.config.ts"],
-  "exclude": ["build", "node_modules"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", ".qwik"]
 }

@@ -1,6 +1,7 @@
 {
-  "name": "ecommerce-qwik",
-  "description": "Qwik e-commerce demo with Resumability",
+  "name": "ecommerce-qwik-resumability",
+  "description": "Qwik e-commerce demo with full Resumability",
+  "version": "1.0.0",
   "engines": {
     "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
   },
@@ -35,7 +36,6 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^8.57.0",
     "eslint-plugin-qwik": "^1.2.0",
-    "lucide-qwik": "^1.0.0",
     "postcss": "^8.5.5",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.17",

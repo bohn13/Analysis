@@ -1,12 +1,15 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { component$, useSignal, useComputed$, $ } from '@builder.io/qwik';
 import { useNavigate } from '@builder.io/qwik-city';
-import { useCartStore } from '~/lib/cart-store';
+import { useCart } from '~/lib/cart-context';
 import { clearCart, getTotalPrice } from '~/lib/cart-actions';
 
 export default component$(() => {
   const nav = useNavigate();
   const isProcessing = useSignal(false);
-  const store = useCartStore();
+  const cart = useCart();
+
+  // useComputed$ для Resumability
+  const total = useComputed$(() => getTotalPrice(cart));
 
   const handleSubmit = $(async (event: Event) => {
     event.preventDefault();
@@ -15,16 +18,13 @@ export default component$(() => {
     // Симуляція обробки замовлення
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    clearCart(store); // Викликаємо звичайну функцію
+    await clearCart(cart);
 
     alert('Order placed successfully!');
     await nav('/');
   });
 
-  const items = store.cart.items;
-  const total = getTotalPrice(store);
-
-  if (items.length === 0) {
+  if (cart.items.length === 0) {
     return (
       <div class="text-center py-16">
         <h2 class="text-2xl font-bold mb-4">Your cart is empty</h2>
@@ -108,7 +108,7 @@ export default component$(() => {
           >
             {isProcessing.value
               ? 'Processing...'
-              : `Place Order - $${total.toFixed(2)}`}
+              : `Place Order - $${total.value.toFixed(2)}`}
           </button>
         </form>
       </div>
@@ -117,7 +117,7 @@ export default component$(() => {
       <div class="bg-white p-6 rounded-lg border">
         <h2 class="text-xl font-bold mb-4">Order Summary</h2>
         <div class="space-y-3 mb-4">
-          {items.map((item) => (
+          {cart.items.map((item) => (
             <div key={item.product.id} class="flex justify-between">
               <span>{item.product.name} x{item.quantity}</span>
               <span>${(item.product.price * item.quantity).toFixed(2)}</span>
@@ -128,7 +128,7 @@ export default component$(() => {
         <div class="border-t pt-4">
           <div class="flex justify-between font-bold text-lg">
             <span>Total:</span>
-            <span>${total.toFixed(2)}</span>
+            <span>${total.value.toFixed(2)}</span>
           </div>
         </div>
       </div>

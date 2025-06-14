@@ -11,7 +11,6 @@ export default function CheckoutPage() {
     e.preventDefault();
     setIsProcessing(true);
     
-    // Simulate processing
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     clearCart();

@@ -1,6 +1,5 @@
-import type { Product } from '../types';
+import type { Product } from '~/types';
 
-// Ідентичні товари як в Astro версії
 export const products: Product[] = [
   {
     id: '1',
@@ -15,7 +14,7 @@ export const products: Product[] = [
     name: 'Smart Watch',
     price: 199.99,
     image: '/images/products/smartwatch.jpg',
-    description: 'Advanced smartwatch with health tracking features.',
+    description: 'Smartwatch with health tracking features.',
     category: 'Electronics'
   },
   {
