@@ -8,8 +8,15 @@ export default extendConfig(baseConfig, () => {
       rollupOptions: {
         input: ['src/entry.express.tsx', '@qwik-city-plan'],
       },
-      outDir: 'server',
+      outDir: '../../server',
     },
     publicDir: false,
+    ssr: {
+      noExternal: [
+        '@builder.io/qwik',
+        '@builder.io/qwik-city',
+        'undici'
+      ],
+    },
   };
 });
