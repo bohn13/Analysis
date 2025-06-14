@@ -5,11 +5,21 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(() => {
   return {
-    plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
+    plugins: [
+      qwikCity(),
+      qwikVite(),
+      tsconfigPaths(),
+    ],
     preview: {
       headers: {
         'Cache-Control': 'public, max-age=600',
       },
+      port: 5173,
+      host: '0.0.0.0',
+    },
+    build: {
+      target: 'es2020',
+      minify: 'esbuild' as const,
     },
   };
 });
