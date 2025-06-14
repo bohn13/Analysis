@@ -25,7 +25,7 @@ export default function CheckoutPage() {
         <h2 className="text-2xl font-bold mb-4">No items to checkout</h2>
         <a
           href="/"
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
         >
           Go Shopping
         </a>
@@ -93,7 +93,7 @@ export default function CheckoutPage() {
           <button
             type="submit"
             disabled={isProcessing}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
           >
             {isProcessing ? 'Processing...' : `Place Order - $${totalPrice.toFixed(2)}`}
           </button>

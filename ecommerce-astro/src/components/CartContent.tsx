@@ -13,7 +13,7 @@ export default function CartContent() {
   if (!mounted) {
     return (
       <div className="text-center py-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600 mx-auto mb-4"></div>
         <p className="text-gray-600">Loading cart...</p>
       </div>
     );
@@ -25,7 +25,7 @@ export default function CartContent() {
         <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
         <a 
           href="/" 
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
         >
           Continue Shopping
         </a>
@@ -96,7 +96,7 @@ export default function CartContent() {
         
         <a
           href="/checkout"
-          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors block text-center"
+          className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors block text-center"
         >
           Proceed to Checkout
         </a>

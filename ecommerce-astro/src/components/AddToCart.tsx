@@ -24,7 +24,7 @@ export default function AddToCart({ product }: AddToCartProps) {
   return (
     <button
       onClick={handleAddToCart}
-      className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors"
+      className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition-colors"
       disabled={!mounted}
     >
       Add to Cart
