@@ -14,20 +14,25 @@
     "build": "qwik build",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.server": "vite build -c adapters/express/vite.config.ts",
+    "build.static": "qwik build --mode static",
     "build.types": "tsc --incremental --noEmit",
     "deploy": "echo 'Run \"npm run qwik add\" to install a server adapter'",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
     "fmt": "prettier --write .",
     "fmt.check": "prettier --check .",
-    "preview": "qwik build preview && vite preview --open",
+    "preview": "vite preview --host 0.0.0.0 --port 3000",
     "start": "vite --open --mode ssr",
+    "serve": "node server/entry.express.js",
     "qwik": "qwik"
   },
   "devDependencies": {
     "@builder.io/qwik": "^1.2.0",
     "@builder.io/qwik-city": "^1.2.0",
+    "@types/compression": "^1.8.1",
     "@types/eslint": "^8.56.10",
+    "@types/express": "^5.0.3",
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
@@ -43,6 +48,8 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
+    "compression": "^1.8.0",
+    "express": "^5.1.0",
     "lucide-qwik": "^1.0.0"
   }
 }
