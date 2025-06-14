@@ -10,6 +10,7 @@ RUN npm ci
 COPY . .
 
 # Build Qwik app with Resumability
+RUN npm run build
 RUN npm run build.types && npm run build.server
 
 # Production stage
