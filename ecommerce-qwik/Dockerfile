@@ -38,5 +38,9 @@ EXPOSE 8000
 # Set production environment
 ENV NODE_ENV=production
 
-# Start Express server with FULL Resumability
+RUN apt-get update && apt-get install -y curl
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD curl --fail http://localhost:8000 || exit 1
+  
 CMD ["node", "server/entry.express.js"]
