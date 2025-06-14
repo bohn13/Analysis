@@ -23,9 +23,6 @@ COPY package*.json ./
 # Install only production dependencies
 RUN npm ci --production
 
-# Copy built Qwik app
-COPY --from=builder /app/dist ./dist
-
 # Copy Express server
 COPY --from=builder /app/server ./server
 
