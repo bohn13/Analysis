@@ -38,9 +38,5 @@ EXPOSE 8000
 # Set production environment
 ENV NODE_ENV=production
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:8000', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })"
-
 # Start Express server with FULL Resumability
 CMD ["node", "server/entry.express.js"]
