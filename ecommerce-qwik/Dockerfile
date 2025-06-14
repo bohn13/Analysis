@@ -33,11 +33,11 @@ COPY --from=builder /app/adapters ./adapters
 COPY --from=builder /app/public ./public
 
 # Expose port
-EXPOSE 8000
+EXPOSE 3000
 
 # Set production environment
 ENV NODE_ENV=production
-ENV PORT=8000
+ENV PORT=3000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
