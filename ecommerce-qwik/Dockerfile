@@ -40,7 +40,7 @@ ENV NODE_ENV=production
 
 RUN apt-get update && apt-get install -y curl
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD curl --fail http://localhost:8000 || exit 1
-  
+
 CMD ["node", "server/entry.express.js"]
