@@ -8,10 +8,12 @@ export default extendConfig(baseConfig, () => {
       rollupOptions: {
         input: ['src/entry.express.tsx', '@qwik-city-plan'],
       },
-      outDir: '../../server',
+      outDir: 'server',
+      target: 'es2022', // Додано для підтримки top-level await
     },
     publicDir: false,
     ssr: {
+      target: 'node', // Виправлено на правильне значення
       noExternal: [
         '@builder.io/qwik',
         '@builder.io/qwik-city',

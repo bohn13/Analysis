@@ -7,7 +7,14 @@ export default defineConfig(() => {
   return {
     plugins: [
       qwikCity(),
-      qwikVite(),
+      qwikVite({
+        client: {
+          outDir: 'dist/build',
+        },
+        ssr: {
+          outDir: 'server',
+        },
+      }),
       tsconfigPaths(),
     ],
     preview: {
@@ -18,8 +25,13 @@ export default defineConfig(() => {
       host: '0.0.0.0',
     },
     build: {
-      target: 'es2020',
+      target: 'es2022', // Змінено з es2020 на es2022 для підтримки top-level await
       minify: 'esbuild' as const,
+    },
+    server: {
+      headers: {
+        'Cache-Control': 'public, max-age=0',
+      },
     },
   };
 });
