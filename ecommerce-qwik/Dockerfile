@@ -10,10 +10,7 @@ RUN npm ci
 COPY . .
 
 # Build Qwik app with Resumability
-RUN npm run build
-
-# Build Express server adapter
-RUN npm run build.server
+RUN npm run build.types && npm run build.server
 
 # Production stage
 FROM node:20-alpine
