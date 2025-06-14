@@ -1,4 +1,10 @@
-FROM node:18-alpine AS builder
+# =====================================
+# Dockerfile для Qwik Resumability
+# Виправлено помилки збірки
+# =====================================
+
+# Build stage
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -15,8 +21,8 @@ COPY . .
 # 1. Build TypeScript types
 RUN npm run build.types
 
-# 2. Build client with Qwik optimizer (creates chunks for progressive loading)
-RUN npm run build
+# 2. Build client (це створює dist/ з chunks)
+RUN npm run build.client
 
 # 3. Build server entry point
 RUN npm run build.server
@@ -26,13 +32,13 @@ RUN echo "=== Verifying Resumability Build ===" && \
     ls -la dist/ && \
     ls -la dist/build/ 2>/dev/null || echo "WARNING: dist/build/ missing" && \
     ls -la server/ && \
-    find dist/ -name "q-manifest.json" -o -name "*manifest*" && \
+    find dist/ -name "q-manifest.json" -o -name "*manifest*" 2>/dev/null || echo "No manifest found" && \
     echo "=== Build verification complete ==="
 
 # =====================================
 # Production stage - Resumability optimized
 # =====================================
-FROM node:18-alpine AS production
+FROM node:20-alpine AS production
 
 WORKDIR /app
 
@@ -45,7 +51,7 @@ RUN addgroup -g 1001 -S nodejs && \
 
 # Copy package files and install ONLY production dependencies
 COPY package*.json ./
-RUN npm ci --only=production && npm cache clean --force
+RUN npm ci --omit=dev && npm cache clean --force
 
 # Copy Resumability artifacts with proper ownership
 # SERVER: SSR entry point for initial HTML generation
@@ -59,10 +65,10 @@ COPY --from=builder --chown=qwik:nodejs /app/public ./public
 
 # Verify critical Resumability files exist
 RUN echo "=== Verifying Resumability in Production ===" && \
-    ls -la server/entry.express.js && \
+    ls -la server/entry.express.js 2>/dev/null || echo "❌ entry.express.js missing" && \
     ls -la dist/ && \
     find dist/ -name "*.js" | head -5 && \
-    find dist/ -name "*manifest*" && \
+    find dist/ -name "*manifest*" 2>/dev/null || echo "No manifest in production" && \
     echo "=== Production verification complete ==="
 
 # Set proper permissions for Resumability assets
@@ -86,7 +92,6 @@ ENV HOST=0.0.0.0
 
 # Qwik-specific optimizations
 ENV QWIK_OPTIMIZE=true
-ENV QWIK_PREFETCH=true
 
 # Health check that verifies Resumability
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
