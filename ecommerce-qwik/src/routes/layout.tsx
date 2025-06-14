@@ -1,6 +1,6 @@
 import { component$, Slot } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
-import header from '~/components/header/header';
+import Header from '~/components/header/header';
 
 export const useServerTimeLoader = routeLoader$(() => {
   return {
@@ -12,7 +12,7 @@ export default component$(() => {
   return (
     <div class="min-h-screen bg-gray-50 text-gray-900 antialiased">
       <div class="flex flex-col min-h-screen">
-        <header />
+        <Header />
         <main class="flex-1">
           <Slot />
         </main>

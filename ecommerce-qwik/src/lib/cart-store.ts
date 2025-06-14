@@ -12,7 +12,6 @@ export function useCartStore(): CartStoreReturn {
     items: [],
   });
 
-  // Завантажити з localStorage
   useVisibleTask$(() => {
     const saved = localStorage.getItem('cart-storage-qwik');
     if (saved) {
@@ -24,7 +23,6 @@ export function useCartStore(): CartStoreReturn {
     }
   });
 
-  // Автоматичне збереження при зміні
   useVisibleTask$(({ track }) => {
     track(() => cart.items);
     localStorage.setItem('cart-storage-qwik', JSON.stringify(cart.items));

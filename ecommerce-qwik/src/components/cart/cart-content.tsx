@@ -7,28 +7,35 @@ import {
 } from '~/lib/cart-actions';
 
 export default component$(() => {
-  const {cart} = useCartStore();
+  const store = useCartStore();
   const totalPrice = useSignal(0);
 
   useVisibleTask$(() => {
-    totalPrice.value = cart.items.reduce(
+    totalPrice.value = store.cart.items.reduce(
       (acc, item) => acc + item.product.price * item.quantity,
       0
     );
   });
 
-const handleUpdate = $((productId: string, quantity: number) => {
-  const { cart } = useCartStore();
-  updateItemQuantity({ cart }, productId, quantity);
-});
+  const handleUpdate = $((productId: string, quantity: number) => {
+    updateItemQuantity(store, productId, quantity);
+    // Оновлюємо ціну після зміни
+    totalPrice.value = store.cart.items.reduce(
+      (acc, item) => acc + item.product.price * item.quantity,
+      0
+    );
+  });
 
-const handleRemove = $((productId: string) => {
-  const { cart } = useCartStore();
-  removeItemFromCart({ cart }, productId);
-});
+  const handleRemove = $((productId: string) => {
+    removeItemFromCart(store, productId);
+    // Оновлюємо ціну після видалення
+    totalPrice.value = store.cart.items.reduce(
+      (acc, item) => acc + item.product.price * item.quantity,
+      0
+    );
+  });
 
-
-  if (cart.items.length === 0) {
+  if (store.cart.items.length === 0) {
     return (
       <div class="text-center py-16">
         <h2 class="text-2xl font-bold mb-4">Your cart is empty</h2>
@@ -45,7 +52,7 @@ const handleRemove = $((productId: string) => {
   return (
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div class="lg:col-span-2 space-y-4">
-        {cart.items.map((item) => (
+        {store.cart.items.map((item) => (
           <div key={item.product.id} class="bg-white p-4 rounded-lg border">
             <div class="flex items-center space-x-4">
               <img

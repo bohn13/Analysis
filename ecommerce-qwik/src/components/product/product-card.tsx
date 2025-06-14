@@ -10,8 +10,10 @@ interface ProductCardProps {
 export default component$<ProductCardProps>(({ product }) => {
   return (
     <div class="group relative h-full">
-      <Link href={`/product/${product.id}`} class="block h-full">
-        <div class="relative flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
+      <div class="relative flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
+        
+        {/* Image - клікабельна для переходу */}
+        <Link href={`/product/${product.id}`} class="block">
           <div class="aspect-square overflow-hidden bg-gray-100">
             <img
               src={product.image}
@@ -22,29 +24,34 @@ export default component$<ProductCardProps>(({ product }) => {
               height={400}
             />
           </div>
+        </Link>
 
-          <div class="flex flex-col flex-1 p-4 pb-14">
-            <h3 class="text-base font-semibold text-gray-900 line-clamp-2 mb-2">
+        <div class="flex flex-col flex-1 p-4 pb-14">
+          {/* Title - також клікабельний */}
+          <Link href={`/product/${product.id}`} class="block mb-2">
+            <h3 class="text-base font-semibold text-gray-900 line-clamp-2 hover:text-purple-600 transition-colors">
               {product.name}
             </h3>
-            <p class="text-sm text-gray-600 line-clamp-2 mb-3">
-              {product.description}
-            </p>
-            <div class="mt-auto flex items-center justify-between">
-              <span class="text-lg font-bold text-purple-600">
-                ${product.price}
-              </span>
-              <span class="text-xs uppercase tracking-wide text-gray-500 font-medium">
-                {product.category}
-              </span>
-            </div>
-          </div>
-
-          <div class="absolute bottom-3 right-3">
-            <AddToCart product={product} />
+          </Link>
+          
+          <p class="text-sm text-gray-600 line-clamp-2 mb-3">
+            {product.description}
+          </p>
+          <div class="mt-auto flex items-center justify-between">
+            <span class="text-lg font-bold text-purple-600">
+              ${product.price}
+            </span>
+            <span class="text-xs uppercase tracking-wide text-gray-500 font-medium">
+              {product.category}
+            </span>
           </div>
         </div>
-      </Link>
+
+        {/* Кнопка Add to Cart поза Link */}
+        <div class="absolute bottom-3 right-3">
+          <AddToCart product={product} />
+        </div>
+      </div>
     </div>
   );
 });
