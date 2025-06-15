@@ -16,14 +16,12 @@ export default function (opts: RenderToStreamOptions) {
   return renderToStream(<Root />, {
     manifest,
     ...opts,
-    // Critical Resumability settings
+
     containerAttributes: {
       lang: 'en-us',
       ...opts.containerAttributes,
     },
-    // Ensure proper serialization for Resumability
     base: '/build/',
-    // Enable Resumability debugging (optional, can remove in production)
     debug: process.env.NODE_ENV === 'development',
   });
 }
