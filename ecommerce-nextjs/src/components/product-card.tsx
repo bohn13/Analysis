@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Product } from '@/types';
 import { useCartStore } from '@/lib/cart-store';
+import Image from 'next/image';
 
 interface ProductCardProps {
   product: Product;
@@ -21,11 +22,12 @@ export function ProductCard({ product }: ProductCardProps) {
       <Link href={`/product/${product.id}`} className="block h-full">
         <div className="relative flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
           <div className="aspect-square bg-gray-100 overflow-hidden">
-            <img
+            <Image
               src={product.image}
               alt={product.name}
               className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
               loading="lazy"
+              fetchPriority="high"
             />
           </div>
 

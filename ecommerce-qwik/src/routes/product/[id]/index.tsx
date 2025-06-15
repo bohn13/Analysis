@@ -35,8 +35,10 @@ export default component$(() => {
             src={product.value.image}
             alt={product.value.name}
             class="w-full h-full object-cover"
+            loading="eager"
             width={600}
             height={600}
+            fetchPriority="high"
           />
         </div>
 

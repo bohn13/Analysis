@@ -4,6 +4,8 @@ import { createQwikCity, type PlatformNode } from '@builder.io/qwik-city/middlew
 import qwikCityPlan from '@qwik-city-plan';
 import render from './entry.ssr';
 import { manifest } from '@qwik-client-manifest';
+import https from 'https';
+import fs from 'fs';
 
 declare global {
   interface QwikCityPlatform extends PlatformNode {}
@@ -26,6 +28,11 @@ app.use(notFound);
 
 const PORT = parseInt(process.env.PORT || '3000', 10);
 
-app.listen(PORT, () => {
-  console.log(`[Qwik] Server is running on https://localhost:${PORT}`);
+const options = {
+  key: fs.readFileSync('/path/to/your/privkey.pem'),
+  cert: fs.readFileSync('/path/to/your/fullchain.pem')
+};
+
+https.createServer(options, app).listen(PORT, () => {
+  console.log(`[Qwik] HTTPS server is running on https://localhost:${PORT}`);
 });
