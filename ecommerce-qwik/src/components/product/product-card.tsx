@@ -5,24 +5,26 @@ import AddToCart from './add-to-cart';
 
 interface ProductCardProps {
   product: Product;
+  eager?: boolean;
 }
 
-export default component$<ProductCardProps>(({ product }) => {
+export default component$<ProductCardProps>(({ product, eager }) => {
   return (
     <div class="group relative h-full">
       <Link href={`/product/${product.id}`} class="block h-full">
         <div class="relative flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
-          {/* Product Image - ідентичне до Next.js */}
+          {/* Product Image*/}
           <div class="aspect-square bg-gray-100 overflow-hidden">
             <img
               src={product.image}
               alt={product.name}
               class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
-              loading="lazy"
+              loading={eager ? 'eager' : 'lazy'}
+              fetchPriority={eager ? 'high' : 'auto'}
             />
           </div>
 
-          {/* Product Info - ідентичне до Next.js */}
+          {/* Product Info*/}
           <div class="flex flex-col flex-1 p-4 pb-14">
             <h3 class="text-base font-semibold text-gray-900 line-clamp-2 mb-2">
               {product.name}
