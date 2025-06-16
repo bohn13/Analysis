@@ -25,7 +25,7 @@ export default defineConfig(() => {
       host: '0.0.0.0',
     },
     build: {
-      target: 'es2022', // Змінено з es2020 на es2022 для підтримки top-level await
+      target: 'es2022', 
       minify: 'esbuild' as const,
     },
     server: {

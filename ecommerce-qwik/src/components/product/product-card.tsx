@@ -20,7 +20,7 @@ export default component$<ProductCardProps>(({ product, eager }) => {
               alt={product.name}
               class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
               loading={eager ? 'eager' : 'lazy'}
-              fetchPriority={eager ? 'high' : 'auto'}
+              fetchPriority="high"
             />
           </div>
 

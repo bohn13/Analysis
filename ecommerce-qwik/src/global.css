@@ -15,6 +15,14 @@
   }
 }
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/Inter.woff2') format('woff2');
+}
+
 @layer base {
   * {
     box-sizing: border-box;

@@ -6,7 +6,6 @@ import ProductCard from '~/components/product/product-card';
 export default component$(() => {
   return (
     <div class="max-w-6xl mx-auto px-4 py-8">
-      {/* Hero Section - ідентичний до Next.js */}
       <div class="text-center mb-12">
         <h1 class="text-4xl font-bold text-gray-900 mb-4 sm:text-5xl">
           Welcome to TechStore
@@ -23,7 +22,6 @@ export default component$(() => {
         </div>
       </div>
 
-      {/* Stats Section - ідентичний до Next.js */}
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
         <div class="text-center p-4 bg-white rounded-lg border border-gray-200">
           <div class="text-2xl font-bold text-gray-900">{products.length}</div>
@@ -42,13 +40,12 @@ export default component$(() => {
           <div class="text-sm text-gray-600">Support</div>
         </div>
       </div>
-
-      {/* Products Grid - ідентичний до Next.js */}
+      
       <div class="mb-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6">Featured Products</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product, index) => (
+            <ProductCard key={product.id} product={product} eager={index < 3} />
           ))}
         </div>
       </div>

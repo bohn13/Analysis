@@ -16,6 +16,10 @@ export default component$(() => {
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="modulepreload" href="/build/q-7JxfVAjh.js"></link>
+        <link rel="modulepreload" href="/build/q-BAw80VXt.js"></link>
+        <link rel="modulepreload" href="/build/q-7JxfVAjh.js"></link>
+        <link rel="modulepreload" href="/build/q-BAw80VXt.js"></link>
         <link 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
           rel="stylesheet" 
