@@ -1,4 +1,3 @@
-// React Island - форма checkout
 import { useCartStore } from '../lib/cart-store';
 import { useState } from 'react';
 
@@ -34,7 +33,6 @@ export default function CheckoutPage() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {/* Shipping Form */}
       <div className="bg-white p-6 rounded-lg border">
         <h2 className="text-xl font-bold mb-4">Shipping Information</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -99,7 +97,6 @@ export default function CheckoutPage() {
         </form>
       </div>
 
-      {/* Order Summary */}
       <div className="bg-white p-6 rounded-lg border">
         <h2 className="text-xl font-bold mb-4">Order Summary</h2>
         <div className="space-y-3 mb-4">

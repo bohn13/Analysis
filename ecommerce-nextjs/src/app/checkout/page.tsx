@@ -4,7 +4,6 @@ import { useCartStore } from '@/lib/cart-store';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-// TODO: Простая страница checkout без реальной оплаты
 export default function CheckoutPage() {
   const { items, getTotalPrice, clearCart } = useCartStore();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -15,7 +14,6 @@ export default function CheckoutPage() {
     e.preventDefault();
     setIsProcessing(true);
     
-    // Simulate processing
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     clearCart();
@@ -42,7 +40,7 @@ export default function CheckoutPage() {
       <h1 className="text-3xl font-bold mb-8">Checkout</h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Shipping Form */}
+
         <div className="bg-white p-6 rounded-lg border">
           <h2 className="text-xl font-bold mb-4">Shipping Information</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -107,7 +105,6 @@ export default function CheckoutPage() {
           </form>
         </div>
 
-        {/* Order Summary */}
         <div className="bg-white p-6 rounded-lg border">
           <h2 className="text-xl font-bold mb-4">Order Summary</h2>
           <div className="space-y-3 mb-4">

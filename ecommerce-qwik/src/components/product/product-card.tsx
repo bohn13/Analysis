@@ -13,7 +13,6 @@ export default component$<ProductCardProps>(({ product, eager }) => {
     <div class="group relative h-full">
       <Link href={`/product/${product.id}`} class="block h-full">
         <div class="relative flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
-          {/* Product Image*/}
           <div class="aspect-square bg-gray-100 overflow-hidden">
             <img
               src={product.image}
@@ -24,7 +23,6 @@ export default component$<ProductCardProps>(({ product, eager }) => {
             />
           </div>
 
-          {/* Product Info*/}
           <div class="flex flex-col flex-1 p-4 pb-14">
             <h3 class="text-base font-semibold text-gray-900 line-clamp-2 mb-2">
               {product.name}
@@ -42,7 +40,6 @@ export default component$<ProductCardProps>(({ product, eager }) => {
             </div>
           </div>
 
-          {/* Add to Cart Button - поза Link для правильної роботи */}
           <div class="absolute bottom-3 right-3">
             <AddToCart product={product} />
           </div>

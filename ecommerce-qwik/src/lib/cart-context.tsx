@@ -8,21 +8,17 @@ import {
 } from '@builder.io/qwik';
 import type { CartItem } from '~/types';
 
-// Інтерфейс для стану кошика
 export interface CartState {
   items: CartItem[];
 }
 
-// Контекст для Resumability - ключовий елемент архітектури
 export const CartContext = createContextId<CartState>('cart-context');
 
-// Провайдер контексту кошика з localStorage підтримкою
 export const useCartProvider = () => {
   const cart = useStore<CartState>({
     items: [],
   });
 
-  // Завантажуємо з localStorage при ініціалізації (тільки в браузері)
   useVisibleTask$(() => {
     if (typeof window !== 'undefined') {
       try {
@@ -37,7 +33,6 @@ export const useCartProvider = () => {
     }
   });
 
-  // Зберігаємо в localStorage при змінах (реактивно)
   useVisibleTask$(({ track }) => {
     track(() => cart.items);
     if (typeof window !== 'undefined') {
@@ -49,7 +44,6 @@ export const useCartProvider = () => {
     }
   });
 
-  // Реєструємо провайдер для Resumability
   useContextProvider(CartContext, cart);
   return cart;
 };

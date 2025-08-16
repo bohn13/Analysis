@@ -4,7 +4,6 @@ import Header from '../../components/Header.astro';
 import AddToCart from '../../components/AddToCart';
 import { products } from '../../lib/products';
 
-// Static generation - імпорт повинен бути доступний для getStaticPaths
 export function getStaticPaths() {
   return [
     { params: { id: '1' }, props: { product: { id: '1', name: 'Wireless Headphones', price: 99.99, image: 'https://picsum.photos/seed/headphones/400/400', description: 'High-quality wireless headphones with noise cancellation.', category: 'Electronics' } } },

@@ -8,14 +8,13 @@ export default component$(() => {
   const isProcessing = useSignal(false);
   const cart = useCart();
 
-  // useComputed$ для Resumability
   const total = useComputed$(() => getTotalPrice(cart));
 
   const handleSubmit = $(async (event: Event) => {
     event.preventDefault();
     isProcessing.value = true;
 
-    // Симуляція обробки замовлення
+
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     await clearCart(cart);
@@ -41,7 +40,6 @@ export default component$(() => {
 
   return (
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {/* Shipping Form */}
       <div class="bg-white p-6 rounded-lg border">
         <h2 class="text-xl font-bold mb-4">Shipping Information</h2>
         <form onSubmit$={handleSubmit} class="space-y-4">
@@ -113,7 +111,6 @@ export default component$(() => {
         </form>
       </div>
 
-      {/* Order Summary */}
       <div class="bg-white p-6 rounded-lg border">
         <h2 class="text-xl font-bold mb-4">Order Summary</h2>
         <div class="space-y-3 mb-4">

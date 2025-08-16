@@ -8,7 +8,6 @@ export default component$(() => {
     <header class="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
       <div class="max-w-6xl mx-auto px-4">
         <div class="flex h-16 items-center justify-between">
-          {/* Logo - ідентичний до Next.js версії */}
           <Link href="/" class="flex items-center space-x-3">
             <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
               <ShoppingCartIcon class="h-5 w-5" />
@@ -16,7 +15,6 @@ export default component$(() => {
             <span class="text-xl font-bold text-gray-900">TechStore</span>
           </Link>
 
-          {/* Navigation - ідентичне до Next.js версії */}
           <nav class="hidden md:flex items-center space-x-8">
             <Link href="/" class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
               Products
@@ -26,7 +24,6 @@ export default component$(() => {
             </Link>
           </nav>
 
-          {/* Cart Button з Resumability */}
           <CartButton />
         </div>
       </div>

@@ -7,7 +7,6 @@ import { getTotalItems } from '~/lib/cart-actions';
 export default component$(() => {
   const cart = useCart();
 
-  // useComputed$ для Resumability - автоматично перерахує при зміні cart.items
   const totalItems = useComputed$(() => getTotalItems(cart));
 
   return (

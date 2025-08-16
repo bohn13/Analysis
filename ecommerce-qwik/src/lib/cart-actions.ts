@@ -2,7 +2,6 @@ import { $ } from '@builder.io/qwik';
 import type { Product } from '~/types';
 import type { CartState } from './cart-context';
 
-// QRL функції для Resumability - всі дії серіалізуються
 export const addItemToCart = $((cart: CartState, product: Product) => {
   const existing = cart.items.find((item) => item.product.id === product.id);
   if (existing) {
@@ -31,7 +30,6 @@ export const clearCart = $((cart: CartState) => {
   cart.items = [];
 });
 
-// Синхронні функції для обчислень (не потребують QRL)
 export const getTotalPrice = (cart: CartState): number => {
   return cart.items.reduce((total, item) => total + item.product.price * item.quantity, 0);
 };

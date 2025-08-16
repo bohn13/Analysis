@@ -12,7 +12,6 @@ interface CartStore {
   getTotalPrice: () => number;
 }
 
-// TODO: Тот же store что и в Next.js для честного сравнения
 export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
@@ -77,7 +76,7 @@ export const useCartStore = create<CartStore>()(
       },
     }),
     {
-      name: 'cart-storage-astro', // Уникальный ключ для Astro версии
+      name: 'cart-storage-astro',
     }
   )
 );

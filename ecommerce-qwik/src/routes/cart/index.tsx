@@ -11,7 +11,6 @@ import {
 export default component$(() => {
   const cart = useCart();
 
-  // useComputed$ для Resumability - автоматично перерахує при зміні cart.items
   const totalPrice = useComputed$(() => getTotalPrice(cart));
 
   const handleUpdate = $(async (productId: string, quantity: number) => {
@@ -22,7 +21,6 @@ export default component$(() => {
     await removeItemFromCart(cart, productId);
   });
 
-  // Порожній кошик - ідентичний до Next.js
   if (cart.items.length === 0) {
     return (
       <div class="max-w-6xl mx-auto px-4 py-16 text-center">
@@ -42,7 +40,6 @@ export default component$(() => {
       <h1 class="text-3xl font-bold mb-8">Shopping Cart</h1>
       
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Cart Items - ідентичний до Next.js */}
         <div class="lg:col-span-2 space-y-4">
           {cart.items.map((item) => (
             <div key={item.product.id} class="bg-white p-4 rounded-lg border">
@@ -87,7 +84,6 @@ export default component$(() => {
           ))}
         </div>
 
-        {/* Order Summary - ідентичний до Next.js */}
         <div class="bg-white p-6 rounded-lg border h-fit">
           <h2 class="text-xl font-bold mb-4">Order Summary</h2>
           <div class="space-y-2 mb-4">

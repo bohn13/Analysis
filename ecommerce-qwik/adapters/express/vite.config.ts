@@ -9,11 +9,11 @@ export default extendConfig(baseConfig, () => {
         input: ['src/entry.express.tsx', '@qwik-city-plan'],
       },
       outDir: 'server',
-      target: 'es2022', // Додано для підтримки top-level await
+      target: 'es2022',
     },
     publicDir: false,
     ssr: {
-      target: 'node', // Виправлено на правильне значення
+      target: 'node',
       noExternal: [
         '@builder.io/qwik',
         '@builder.io/qwik-city',

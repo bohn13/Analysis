@@ -13,7 +13,6 @@ declare global {
 
 const app = express();
 
-// Production middleware
 app.use(compression());
 
 const { router, notFound, staticFile } = createQwikCity({

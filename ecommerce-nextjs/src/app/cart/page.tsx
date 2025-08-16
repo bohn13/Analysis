@@ -4,7 +4,6 @@ import { useCartStore } from '@/lib/cart-store';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// TODO: Client Component - страница корзины
 export default function CartPage() {
   const { items, updateQuantity, removeItem, getTotalPrice} = useCartStore();
   const totalPrice = getTotalPrice();
@@ -28,7 +27,6 @@ export default function CartPage() {
       <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Cart Items */}
         <div className="lg:col-span-2 space-y-4">
           {items.map((item) => (
             <div key={item.product.id} className="bg-white p-4 rounded-lg border">
@@ -73,7 +71,6 @@ export default function CartPage() {
           ))}
         </div>
 
-        {/* Order Summary */}
         <div className="bg-white p-6 rounded-lg border h-fit">
           <h2 className="text-xl font-bold mb-4">Order Summary</h2>
           <div className="space-y-2 mb-4">

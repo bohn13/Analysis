@@ -14,7 +14,6 @@ interface CartStore {
   getTotalPrice: () => number;
 }
 
-// TODO: Если нужно отключить persist для тестирования - убери persist wrapper
 export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
@@ -79,7 +78,7 @@ export const useCartStore = create<CartStore>()(
       },
     }),
     {
-      name: 'cart-storage', // TODO: Можешь изменить ключ для разных версий
+      name: 'cart-storage',
     }
   )
 );

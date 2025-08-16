@@ -9,14 +9,12 @@ export default component$(() => {
   const isProcessing = useSignal(false);
   const cart = useCart();
 
-  // useComputed$ для Resumability
   const totalPrice = useComputed$(() => getTotalPrice(cart));
 
   const handleSubmit = $(async (event: Event) => {
     event.preventDefault();
     isProcessing.value = true;
     
-    // Симуляція обробки замовлення
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     await clearCart(cart);
@@ -25,7 +23,6 @@ export default component$(() => {
     await nav('/');
   });
 
-  // Порожній кошик - ідентичний до Next.js
   if (cart.items.length === 0) {
     return (
       <div class="max-w-6xl mx-auto px-4 py-16 text-center">
@@ -45,7 +42,6 @@ export default component$(() => {
       <h1 class="text-3xl font-bold mb-8">Checkout</h1>
       
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Shipping Form - ідентичний до Next.js */}
         <div class="bg-white p-6 rounded-lg border">
           <h2 class="text-xl font-bold mb-4">Shipping Information</h2>
           <form onSubmit$={handleSubmit} class="space-y-4">
@@ -110,7 +106,6 @@ export default component$(() => {
           </form>
         </div>
 
-        {/* Order Summary - ідентичний до Next.js */}
         <div class="bg-white p-6 rounded-lg border">
           <h2 class="text-xl font-bold mb-4">Order Summary</h2>
           <div class="space-y-3 mb-4">

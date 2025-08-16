@@ -20,7 +20,6 @@ export default component$(() => {
 
   return (
     <div class="max-w-6xl mx-auto px-4 py-8">
-      {/* Back Link - ідентичний до Next.js */}
       <Link 
         href="/" 
         class="text-blue-600 hover:text-blue-800 mb-6 inline-block"
@@ -29,7 +28,6 @@ export default component$(() => {
       </Link>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Product Image - ідентичний до Next.js */}
         <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden">
           <img
             src={product.value.image}
@@ -42,7 +40,6 @@ export default component$(() => {
           />
         </div>
 
-        {/* Product Info - ідентичний до Next.js */}
         <div>
           <h1 class="text-3xl font-bold text-gray-900 mb-4">
             {product.value.name}
@@ -56,7 +53,6 @@ export default component$(() => {
             ${product.value.price}
           </div>
 
-          {/* Large Add to Cart Button */}
           <AddToCart product={product.value} variant="large" />
         </div>
       </div>

@@ -26,6 +26,8 @@ export function ProductCard({ product }: ProductCardProps) {
               src={product.image}
               alt={product.name}
               className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
+              width={600}
+              height={600}
               loading="eager"
               fetchPriority="high"
             />
